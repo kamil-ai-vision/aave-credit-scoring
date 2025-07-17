@@ -14,6 +14,8 @@ This document presents an analysis of credit scores assigned to wallets interact
 
 ## 📈 Score Distribution
 
+![Score Distribution](images/score_distribution.png)
+
 The credit scores follow a skewed normal distribution, with most wallets clustered in the **600–800** range.
 
 ### Key Observations:
