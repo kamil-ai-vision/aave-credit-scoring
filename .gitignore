@@ -1,0 +1,10 @@
+# Data files
+*.json
+*.csv
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Notebook checkpoints
+.ipynb_checkpoints/
