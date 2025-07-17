@@ -74,6 +74,9 @@ The resulting raw scores are passed through a second **Min-Max Scaler** to map t
 ```
 aave-credit-scoring/
 │
+├── images/
+│   └── score_distribution.png
+│
 ├── data/
 │   └── user-wallet-transactions.json
 │
