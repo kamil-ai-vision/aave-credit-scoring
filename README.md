@@ -95,7 +95,7 @@ aave-credit-scoring/
 Clone the repository:
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/kamil-ai-vision/aave-credit-scoring.git
 cd aave-credit-scoring
 ```
 
