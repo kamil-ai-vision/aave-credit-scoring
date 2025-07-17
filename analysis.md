@@ -1,56 +1,83 @@
-Analysis of Aave V2 Wallet Scores
-This document provides an analysis of the credit scores generated for wallets interacting with the Aave V2 protocol. The analysis is based on a sample of 100,000 transactions.
+# 📊 Analysis of Aave V2 Wallet Scores
 
-Score Distribution
-The credit scores are distributed on a scale from 0 to 1000. The histogram below shows the concentration of wallets across different score ranges.
+This document presents an analysis of credit scores assigned to wallets interacting with the Aave V2 protocol. The credit scoring model evaluates wallet behavior based on historical transaction data, with the goal of identifying responsible users and flagging potential risks.
 
-Observations:
+---
 
-The vast majority of wallets are concentrated in the 600-800 score range. This suggests that most users in the dataset exhibit moderately positive or responsible behavior.
+## ✅ Dataset Overview
 
-There is a significant peak in the 600-650 range, indicating a large group of "average" users.
+- **Source**: 100,000 on-chain transactions involving Aave V2  
+- **Output**: Credit scores for 3,497 unique wallets  
+- **Score Range**: 0 (high risk) to 1000 (low risk, reliable)
 
-Very few wallets scored below 500, which implies that outright risky behavior (like getting liquidated) is relatively rare in this specific dataset.
+---
 
-A smaller, but still significant, number of wallets achieved high scores (800+), representing the most reliable users.
+## 📈 Score Distribution
 
-Behavior of Wallet Tiers
-To understand the practical meaning of the scores, we can analyze the underlying features of wallets in different score tiers.
+The credit scores follow a skewed normal distribution, with most wallets clustered in the **600–800** range.
 
-High-Scoring Wallets (Score: 850-1000)
-These wallets represent the "gold standard" of users on the protocol. Their behavior is characterized by:
+### Key Observations:
 
-Zero Liquidations: These users have never been liquidated.
+- **Most Wallets Score 600–800**: Indicates a generally responsible and moderately active user base.
+- **Peak at 600–650**: Suggests a large population of “average” users.
+- **Few Wallets Below 500**: Risky behavior (e.g., liquidation, missed repayments) is uncommon.
+- **Wallets Scoring 800+**: Represent the most reliable and capital-efficient users on Aave V2.
 
-High Repayment Ratio: They consistently repay more than they borrow, or they borrow very little relative to their deposits. Their repayment_ratio is often at the capped value of 5.0 or very close to 1.0.
+---
 
-High Activity: They tend to have a higher-than-average transaction_count and lifespan_days, indicating they are active, long-term participants.
+## 🏆 High-Scoring Wallets (Score: 850–1000)
 
-Significant Deposits: Many of these wallets have high total_deposits_usd, showing they trust the protocol with significant capital.
+These are the most trustworthy wallets on the protocol.
 
-Conclusion: High-scoring wallets are capital-efficient, low-risk, and highly engaged users who are ideal from the protocol's perspective.
+**Typical Characteristics**:
+- ✅ Zero Liquidations  
+- ✅ Repayment Ratio ≈ 1.0 or 5.0 (fully repaid or over-collateralized)  
+- ✅ High Transaction Count (sustained engagement)  
+- ✅ Long Lifespan (months or years)  
+- ✅ Significant Deposits  
 
-Mid-Scoring Wallets (Score: 600-850)
-This is the largest group and represents the "average" Aave user. Their characteristics include:
+**Conclusion**: Ideal users — low risk, high value, consistent activity.
 
-No Liquidations: The vast majority of these users have never been liquidated.
+---
 
-Variable Repayment Ratio: Their repayment habits are mixed. Many have a ratio near 1.0, but some may have open loans (ratio < 1.0). They are generally responsible but may actively use leverage.
+## ⚖️ Mid-Scoring Wallets (Score: 600–850)
 
-Varied Activity: This group includes both new users with short lifespans and older, less active users.
+This is the largest segment in the dataset, representing everyday users.
 
-Conclusion: These wallets are the backbone of the protocol. They are generally reliable but may not be as capital-efficient or as active as the top-tier users.
+**Typical Characteristics**:
+- 🚫 No Liquidations  
+- ⚠️ Mixed Repayment Ratio (mostly responsible)  
+- 📅 Varied Lifespan (new and long-term users)  
+- 🔁 Moderate Activity  
 
-Low-Scoring Wallets (Score: 0-500)
-While rare in this dataset, low-scoring wallets exhibit clear signs of risk or unusual behavior.
+**Conclusion**: Generally reliable users with moderate activity. Not risky, but not highly optimized either.
 
-Liquidations: The single biggest factor driving a low score is having one or more liquidation_count. A single liquidation event heavily penalizes a wallet's score.
+---
 
-Poor Repayment History: These wallets often have a repayment_ratio of 0, meaning they have outstanding debt with no history of repayment in the dataset.
+## ⚠️ Low-Scoring Wallets (Score: 0–500)
 
-Short Lifespan: Many have a very short lifespan_days, suggesting they may be one-off bots or users who abandoned the protocol after a negative event.
+This small group demonstrates clear signs of financial risk.
 
-Conclusion: Low-scoring wallets are high-risk and have a history of financial distress on the protocol.
+**Typical Characteristics**:
+- ❌ One or More Liquidations (heavy penalty)  
+- ❌ Repayment Ratio = 0 (no repayment history)  
+- ⏱️ Short Lifespan (one-time or abandoned wallets)  
+- 🤖 Possibly bots or high-risk borrowers  
 
-Overall Summary
-The heuristic scoring model successfully differentiates wallets based on their on-chain behavior. It effectively identifies reliable, long-term users and flags high-risk wallets that have experienced liquidations. The score distribution suggests a healthy user base in the provided dataset, with a large majority of users demonstrating responsible financial habits.
+**Conclusion**: High-risk wallets with poor financial behavior — least trustworthy segment.
+
+---
+
+## 🧠 Overall Summary
+
+The scoring model successfully stratifies wallets based on key behavioral indicators:
+
+| Tier       | Risk Level | Typical Traits                                         |
+|------------|------------|--------------------------------------------------------|
+| 850–1000   | ✅ Very Low | Long-term, active, responsible, no liquidations        |
+| 600–850    | ⚖️ Medium   | Mixed repayment, varied activity, mostly responsible   |
+| 0–500      | ❌ High     | Liquidated, no repayments, low activity                |
+
+The model appears effective in identifying trustworthy vs. risky users, with a strong central tendency and meaningful outliers.
+
+---
