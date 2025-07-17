@@ -50,7 +50,14 @@ def main():
 
     # --- 4. Prepare and Save Final Output ---
     # Select and reorder columns for a clean output file
-    final_output = scores_df[['credit_score', 'lifespan_days', 'transaction_count', 'liquidation_count', 'repayment_ratio']].sort_values('credit_score', ascending=False)
+    final_output = scores_df[[
+        'credit_score',
+        'total_deposits_usd',
+        'lifespan_days',
+        'transaction_count',
+        'liquidation_count',
+        'repayment_ratio'
+    ]].sort_values('credit_score', ascending=False)
     
     print(f"Saving final scores to {args.output_file}...")
     final_output.to_csv(args.output_file)
